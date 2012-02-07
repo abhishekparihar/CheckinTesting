@@ -36,6 +36,7 @@ public class TestCheckin extends ActivityInstrumentationTestCase2 {
 	public void testPublicCheckin(){
 		solo.clickOnButton("Supporting My Causes");
 		solo.clickOnText("Business1");
+		
 		solo.clickOnText("NO");
 		solo.clickOnButton("CHECK-IN FOR GOOD!");
 	}

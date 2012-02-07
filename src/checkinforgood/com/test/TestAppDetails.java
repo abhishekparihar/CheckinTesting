@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import checkinforgood.com.AppStatus;
 import checkinforgood.com.CheckinNativeActivity;
-import checkinforgood.com.R;
 
 import com.jayway.android.robotium.solo.Solo;
 
@@ -40,6 +39,7 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		if (!appStatus.isOnline()) {
 			loginTest.testLogin();
 		}
+		assertTrue(appStatus.isRegistered());
 		testBusinessesButtons();
 		testCausesListItems();
 		checkin.testPublicCheckin();
@@ -57,7 +57,9 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 
 	public void testBusinessesButtons() {
 		solo.clickOnButton("All");
+		assert (solo.getCurrentListViews()) != null;
 		solo.clickOnButton("Supporting My Causes");
+		assert (solo.getCurrentListViews()) != null;
 		solo.clickOnImage(0);
 		
 
@@ -66,15 +68,12 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 	public void testCausesListItems() {
 		solo.clickOnText("Causes");
 		solo.clickOnText("Causes I'm supporting", 0);
-		// solo.waitForDialogToClose(5000);
 		solo.clickOnText("Causes");
-		// solo.waitForDialogToClose(5000);
 		solo.clickOnText("All Causes");
+		assertTrue(solo.getCurrentListViews()!=null);
 		solo.clickOnText("Causes");
-		// solo.waitForDialogToClose(5000);
 		solo.clickOnText("Learn how Check-in for Good works");
-
-	}
+		}
 
 	
 	
