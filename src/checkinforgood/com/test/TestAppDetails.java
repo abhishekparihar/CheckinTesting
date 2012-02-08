@@ -43,17 +43,16 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		testBusinessesButtons();
 		testCausesListItems();
 		checkin.testPublicCheckin();
-		//testTabs();
-		
+		testTabs();
 
 	}
 
-	/*public void testTabs() {
+	public void testTabs() {
 		solo.clickOnText("Settings");
 		solo.clickOnText("Businesses");
 		solo.clickOnText("Causes");
 
-	}*/
+	}
 
 	public void testBusinessesButtons() {
 		solo.clickOnButton("All");
@@ -61,7 +60,6 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		solo.clickOnButton("Supporting My Causes");
 		assert (solo.getCurrentListViews()) != null;
 		solo.clickOnImage(0);
-		
 
 	}
 
@@ -70,11 +68,9 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		solo.clickOnText("Causes I'm supporting", 0);
 		solo.clickOnText("Causes");
 		solo.clickOnText("All Causes");
-		assertTrue(solo.getCurrentListViews()!=null);
+		assertTrue(solo.getCurrentListViews() != null);
 		solo.clickOnText("Causes");
 		solo.clickOnText("Learn how Check-in for Good works");
-		}
+	}
 
-	
-	
 }
