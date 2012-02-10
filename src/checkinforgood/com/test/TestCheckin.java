@@ -8,8 +8,9 @@ import com.jayway.android.robotium.solo.Solo;
 
 public class TestCheckin extends ActivityInstrumentationTestCase2 {
 
-	//LoginTest loginTest;
+	// LoginTest loginTest;
 	private Solo solo;
+	private Boolean cndtn;
 	Activity mActivity;
 
 	public TestCheckin() {
@@ -31,19 +32,52 @@ public class TestCheckin extends ActivityInstrumentationTestCase2 {
 		getActivity().finish();
 		super.tearDown();
 	}
-	
-	
-	public void testPublicCheckin(){
-		solo.clickOnButton("Supporting My Causes");
-		solo.clickOnText("Business1");
-		
+
+	public void testPublicCheckin() {
+		solo.clickOnButton("All");
+		assertTrue(solo.getCurrentListViews() != null);
+		solo.clickOnText("Morgan's Pet Palace");
+		assertTrue(solo.getCurrentListViews() != null);
+		solo.clickInList(0);
 		solo.clickOnText("NO");
 		solo.clickOnButton("CHECK-IN FOR GOOD!");
+
+		boolean txt = solo.searchText("thank you.");
+		if (txt) {
+			solo.waitForDialogToClose(5000);
+			assertTrue(solo.searchText("thank you."));
+			solo.waitForDialogToClose(5000);
+		} else {
+			assertFalse(solo.searchText("thank you."));
+			solo.clickOnText("OK");
+		}
+
 	}
-	
-	public void testPrivateCheckin(){
-		
+
+	public void testPrivateCheckin() {
+		solo.clickOnButton("Supporting My Causes");
+		assertTrue(solo.getCurrentListViews() != null);
+		solo.clickOnText("Morgan's Pet Palace");
+		assertTrue(solo.getCurrentListViews() != null);
+		solo.clickInList(0);
+		solo.clickOnText("YES");
+		solo.clickOnButton("CHECK-IN FOR GOOD!");
+		cndtn = solo.searchText("SETTINGS");
+		boolean txt = solo.searchText("thank you.");
+		if (txt) {
+			solo.waitForDialogToClose(5000);
+			assertTrue(solo.searchText("thank you."));
+			solo.waitForDialogToClose(5000);
+			
+		} else if (cndtn) {
+			assertTrue(solo.searchText("SETTINGS"));
+			solo.clickOnText("SETTINGS");
+
+		} else {
+			assertFalse(solo.searchText("SETTINGS"));
+
+		}
+
 	}
-	
-	
+
 }

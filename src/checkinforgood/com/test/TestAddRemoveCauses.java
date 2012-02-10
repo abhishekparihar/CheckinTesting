@@ -19,6 +19,7 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestAddRemoveCauses extends ActivityInstrumentationTestCase2 {
 
 	private Solo solo;
+
 	public TestAddRemoveCauses() {
 		super("checkinforgood.com", CheckinNativeActivity.class);
 	}
@@ -38,88 +39,66 @@ public class TestAddRemoveCauses extends ActivityInstrumentationTestCase2 {
 		getActivity().finish();
 		super.tearDown();
 	}
-	
-	public void testAddCauses(){
-		
+
+	public void testAddCauses() {
+
 		solo.clickOnText("Causes");
-		solo.clickInList(2);
+		solo.clickOnText("All Causes");
 		solo.waitForDialogToClose(5000);
-		//solo.clickOnText("All Causes");
-		
+
 		ArrayList<ListView> list = solo.getCurrentListViews();
 		ListView lst = list.get(0);
+
 		int cnt = lst.getChildCount();
-		View view = lst.getChildAt(0);
-		//TextView  textViewTopMsg=(TextView)view.findViewById(0);
-		//Log.v ("Test add causes", textViewTopMsg.getText().toString());
-		Log.v ("Test add causes", "list item count ="+cnt);
-		assertTrue(list.size()!=0);
-		ArrayList<ImageView> imgView = solo.getCurrentImageViews();
-		assertTrue(list.size()!=0);
-		imgView.size();
 		
-		Log.v ("Test add causes", "list size ="+list.size());
-		Log.v ("Test add causes", "check box ="+imgView.size());
-		for(int i =0;i<cnt; i++)
-		{
-			ImageView iv = imgView.get(i);
-			//ListItem item = (ListItem) lst.isItemChecked(0);
+
+		Log.v("Test add causes", "list item count =" + cnt);
+		assertTrue(list.size() != 0);
+		ArrayList<ImageView> imgView = solo.getCurrentImageViews();
+		assertTrue(list.size() != 0);
+		imgView.size();
+
+		Log.v("Test add causes", "list size =" + list.size());
+		Log.v("Test add causes", "check box =" + imgView.size());
+		for (int i = 0; i < cnt; i++) {
+			/*View view = lst.getChildAt(i);
 			
-				if(!iv.isPressed())
-			{
-				solo.clickInList(i);
-				solo.clickOnButton("Confirm");
-				break;
-			}
+			
+			 ImageView iv = solo.getImage(i); iv.getTag();
+			 Log.v("Test add causes", "image view =" + iv); 
+			 			 
+			 if (!iv.isPressed()) { solo.clickInList(i);
+			 solo.clickOnButton("Confirm"); break; }
+			*/
 		}
 	}
-	
-public void testRemoveCauses(){
-		
+
+	public void testRemoveCauses() {
+
 		solo.clickOnText("Causes");
-		solo.clickInList(2);
+		solo.clickOnText("All Causes");
 		solo.waitForDialogToClose(5000);
-		//solo.clickOnText("All Causes");
-		
+
 		ArrayList<ListView> list = solo.getCurrentListViews();
 		ListView lst = list.get(0);
 		int cnt = lst.getChildCount();
-		View view = lst.getChildAt(0);
-		//TextView  textViewTopMsg=(TextView)view.findViewById(0);
-		//Log.v ("Test add causes", textViewTopMsg.getText().toString());
-		Log.v ("Test add causes", "list item count ="+cnt);
-		assertTrue(list.size()!=0);
+		Log.v("Test add causes", "list item count =" + cnt);
+		assertTrue(list.size() != 0);
 		ArrayList<ImageView> imgView = solo.getCurrentImageViews();
-		assertTrue(list.size()!=0);
+		assertTrue(list.size() != 0);
 		imgView.size();
-		
-		Log.v ("Test add causes", "list size ="+list.size());
-		Log.v ("Test add causes", "check box ="+imgView.size());
-		for(int i =0;i<cnt; i++)
-		{
+
+		Log.v("Test add causes", "list size =" + list.size());
+		Log.v("Test add causes", "check box =" + imgView.size());
+		for (int i = 0; i < cnt; i++) {
 			ImageView iv = imgView.get(i);
-			//ListItem item = (ListItem) lst.isItemChecked(0);
-				if(iv.isPressed())
-			{
+			// ListItem item = (ListItem) lst.isItemChecked(0);
+			if (iv.isPressed()) {
 				solo.clickInList(i);
 				solo.clickOnButton("Confirm");
 				break;
 			}
 		}
 	}
-
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
