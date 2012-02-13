@@ -33,6 +33,8 @@ public class TestSettings extends ActivityInstrumentationTestCase2 {
 		super.tearDown();
 	}
 
+	///////////To test all List items present inside Settings tab
+	
 	public void testSettingstTabItems() {
 		solo.clickOnText("Settings");
 		assertNotNull(solo.getCurrentListViews());
@@ -49,6 +51,8 @@ public class TestSettings extends ActivityInstrumentationTestCase2 {
 
 	}
 
+	//////////////////////////Teat the Sharing settings i.e switching on and off of toggle buttons
+	
 	public void testSharingSettings() {
 
 		solo.clickLongOnText("Settings");
@@ -68,20 +72,7 @@ public class TestSettings extends ActivityInstrumentationTestCase2 {
 
 	}
 	
-	/*public void testHowItWorks(){
-		
-		solo.clickLongOnText("Settings");
-		solo.clickLongOnText("How Check-in for Good Works");
-		ArrayList<ImageView>img = solo.getCurrentImageViews();
-		ImageView a =  img.get(0);
-		int cnt = img.size();
-		Log.v("How Check-in for Good Works", "image view cnt =" + cnt);
-		Log.v("How Check-in for Good Works", "image view cnt =" + a.getTag(0));
-		for(int i=0;i<cnt;i++){
-			img.get(index)
-			solo.clickOnImage(i);
-		}
-	}*/
+	
 }
 
 

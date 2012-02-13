@@ -34,6 +34,8 @@ public class LoginTest extends ActivityInstrumentationTestCase2<LoginActivity> {
 		super.tearDown();
 	}
 
+	/////////////////// To test Login page
+	
 	public void testLogin() {
 
 		AppStatus appStatus = AppStatus.getInstance(getActivity());

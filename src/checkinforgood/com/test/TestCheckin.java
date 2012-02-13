@@ -33,51 +33,64 @@ public class TestCheckin extends ActivityInstrumentationTestCase2 {
 		super.tearDown();
 	}
 
+	// //////////////// To test Public checkin for
+
 	public void testPublicCheckin() {
-		solo.clickOnButton("All");
+		solo.clickOnButton("Supporting My Causes");
+		solo.waitForDialogToClose(5000);
 		assertNotNull(solo.getCurrentListViews());
-		if(solo.getCurrentListViews().get(0).getChildAt(0)!=null){
+		if (solo.getCurrentListViews().get(0).getChildAt(0) != null) {
 			solo.clickOnView(solo.getCurrentListViews().get(0).getChildAt(0));
 			assertNotNull(solo.getCurrentListViews());
-			solo.clickInList(0);
+			if (!solo.searchButton("MAP")) {
+				solo.clickInList(0);
+			}
 			solo.clickOnText("NO");
+
 			solo.clickOnButton("CHECK-IN FOR GOOD!");
 
 			boolean txt = solo.searchText("thank you.");
 			if (txt) {
 				solo.waitForDialogToClose(5000);
-				assertTrue(solo.searchText("thank you."));
+				assertTrue(solo.searchText("SETTINGS"));
 				solo.waitForDialogToClose(5000);
 			} else {
-				assertFalse(solo.searchText("thank you."));
+				assertFalse(solo.searchText("SETTINGS"));
 				solo.clickOnText("OK");
 			}
 
 		}
 	}
 
+	// ////////////// To test Private checkin
 	public void testPrivateCheckin() {
 		solo.clickOnButton("Supporting My Causes");
-		assertTrue(solo.getCurrentListViews() != null);
-		solo.clickOnText("Morgan's Pet Palace");
-		assertTrue(solo.getCurrentListViews() != null);
-		solo.clickInList(0);
-		solo.clickOnText("YES");
-		solo.clickOnButton("CHECK-IN FOR GOOD!");
-		cndtn = solo.searchText("SETTINGS");
-		boolean txt = solo.searchText("thank you.");
-		if (txt) {
-			solo.waitForDialogToClose(5000);
-			assertTrue(solo.searchText("thank you."));
-			solo.waitForDialogToClose(5000);
+		solo.waitForDialogToClose(5000);
+		assertNotNull(solo.getCurrentListViews());
+		if (solo.getCurrentListViews().get(0).getChildAt(0) != null) {
+			solo.clickOnView(solo.getCurrentListViews().get(0).getChildAt(0));
+			assertNotNull(solo.getCurrentListViews());
+			if (!solo.searchButton("MAP")) {
+				solo.clickInList(0);
+			}
+			solo.clickOnText("YES");
 
-		} else if (cndtn) {
-			assertTrue(solo.searchText("SETTINGS"));
-			solo.clickOnText("SETTINGS");
+			solo.clickOnButton("CHECK-IN FOR GOOD!");
+			cndtn = solo.searchText("SETTINGS");
+			boolean txt = solo.searchText("thank you.");
+			if (txt) {
+				solo.waitForDialogToClose(5000);
+				assertTrue(solo.searchText("thank you."));
+				solo.waitForDialogToClose(5000);
 
-		} else {
-			assertFalse(solo.searchText("SETTINGS"));
+			} else if (cndtn) {
+				assertTrue(solo.searchText("SETTINGS"));
+				solo.clickOnText("SETTINGS");
 
+			} else {
+				assertFalse(solo.searchText("SETTINGS"));
+				solo.clickOnText("OK");
+			}
 		}
 
 	}
