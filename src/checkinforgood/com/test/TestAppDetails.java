@@ -86,8 +86,6 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		solo.clickOnText("Causes");
 		ArrayList<ListView> oldList = solo.getCurrentListViews();
 		solo.clickOnText("Causes I'm supporting", 0);
-		// assertNotSame("Clicked Causes I'm supporting item",
-		// solo.getCurrentListViews(), oldList);
 		oldList = solo.getCurrentListViews();
 		assertTrue(solo.getCurrentListViews() != null);
 		solo.clickOnText("Causes");
