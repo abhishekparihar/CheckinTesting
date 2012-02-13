@@ -35,23 +35,25 @@ public class TestCheckin extends ActivityInstrumentationTestCase2 {
 
 	public void testPublicCheckin() {
 		solo.clickOnButton("All");
-		assertTrue(solo.getCurrentListViews() != null);
-		solo.clickOnText("Morgan's Pet Palace");
-		assertTrue(solo.getCurrentListViews() != null);
-		solo.clickInList(0);
-		solo.clickOnText("NO");
-		solo.clickOnButton("CHECK-IN FOR GOOD!");
+		assertNotNull(solo.getCurrentListViews());
+		if(solo.getCurrentListViews().get(0).getChildAt(0)!=null){
+			solo.clickOnView(solo.getCurrentListViews().get(0).getChildAt(0));
+			assertNotNull(solo.getCurrentListViews());
+			solo.clickInList(0);
+			solo.clickOnText("NO");
+			solo.clickOnButton("CHECK-IN FOR GOOD!");
 
-		boolean txt = solo.searchText("thank you.");
-		if (txt) {
-			solo.waitForDialogToClose(5000);
-			assertTrue(solo.searchText("thank you."));
-			solo.waitForDialogToClose(5000);
-		} else {
-			assertFalse(solo.searchText("thank you."));
-			solo.clickOnText("OK");
+			boolean txt = solo.searchText("thank you.");
+			if (txt) {
+				solo.waitForDialogToClose(5000);
+				assertTrue(solo.searchText("thank you."));
+				solo.waitForDialogToClose(5000);
+			} else {
+				assertFalse(solo.searchText("thank you."));
+				solo.clickOnText("OK");
+			}
+
 		}
-
 	}
 
 	public void testPrivateCheckin() {
@@ -68,7 +70,7 @@ public class TestCheckin extends ActivityInstrumentationTestCase2 {
 			solo.waitForDialogToClose(5000);
 			assertTrue(solo.searchText("thank you."));
 			solo.waitForDialogToClose(5000);
-			
+
 		} else if (cndtn) {
 			assertTrue(solo.searchText("SETTINGS"));
 			solo.clickOnText("SETTINGS");

@@ -53,13 +53,16 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 	public void testTopNavigation() {
 
 		solo.waitForDialogToClose(5000);
+
 		ArrayList<ListView> oldList = solo.getCurrentListViews();
 		solo.clickOnText("Causes");
 		assertNotSame("Clicked Causes Tab", solo.getCurrentListViews(), oldList);
+
 		oldList = solo.getCurrentListViews();
 		solo.clickOnText("Settings");
 		assertNotSame("Clicked Settings Tab", solo.getCurrentListViews(),
 				oldList);
+
 		oldList = solo.getCurrentListViews();
 		solo.clickOnText("Businesses");
 		assertNotSame("Clicked Businesses Tab", solo.getCurrentListViews(),
@@ -74,11 +77,10 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		assertNotSame("Clicked Supporting My Causes Button",
 				solo.getCurrentListViews(), oldList);
 		oldList = solo.getCurrentListViews();
-		assertTrue(solo.getCurrentListViews() != null);
+		assertNotNull(solo.getCurrentListViews());
 		solo.clickOnButton("All");
 		assertNotSame("Clicked All button", solo.getCurrentListViews(), oldList);
-		assertTrue(solo.getCurrentListViews() != null);
-		solo.clickOnImage(0);
+		assertNotNull(solo.getCurrentListViews());
 
 	}
 
@@ -86,15 +88,22 @@ public class TestAppDetails extends ActivityInstrumentationTestCase2 {
 		solo.clickOnText("Causes");
 		ArrayList<ListView> oldList = solo.getCurrentListViews();
 		solo.clickOnText("Causes I'm supporting", 0);
-		oldList = solo.getCurrentListViews();
-		assertTrue(solo.getCurrentListViews() != null);
+
+		/*oldList = solo.getCurrentListViews();
+		assertTrue(solo.getCurrentListViews() != null);*/
+
+		if(solo.getCurrentListViews() != null)
+		assertNotSame("Clicked Causes I'm supporting item", solo.getCurrentListViews(), oldList);
+		
+
 		solo.clickOnText("Causes");
 		solo.clickOnText("All Causes");
+		if(solo.getCurrentListViews() != null)
 		assertNotSame("Clicked All Causes item", solo.getCurrentListViews(),
 				oldList);
-		assertTrue(solo.getCurrentListViews() != null);
 		solo.clickOnText("Causes");
 		solo.clickOnText("Learn how Check-in for Good works");
+		assertNull(solo.getCurrentListViews());
 	}
 
 }
