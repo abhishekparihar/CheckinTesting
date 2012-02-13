@@ -35,7 +35,7 @@ public class TestSettings extends ActivityInstrumentationTestCase2 {
 
 	public void testSettingstTabItems() {
 		solo.clickOnText("Settings");
-		assertTrue(solo.getCurrentListViews() != null);
+		assertNotNull(solo.getCurrentListViews());
 		ArrayList<ListView> list = solo.getCurrentListViews();
 		ListView lst = list.get(0);
 		int cnt = lst.getChildCount();
@@ -53,7 +53,7 @@ public class TestSettings extends ActivityInstrumentationTestCase2 {
 
 		solo.clickLongOnText("Settings");
 		solo.clickOnText("Sharing Settings");
-		assertTrue(solo.getCurrentImageViews() != null);
+		assertNotNull(solo.getCurrentImageViews());
 		ArrayList<ToggleButton> tb = solo.getCurrentToggleButtons();
 		int size = tb.size();
 		for (int i = 0; i < size; i++) {

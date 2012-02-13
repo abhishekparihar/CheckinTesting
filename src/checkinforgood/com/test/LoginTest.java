@@ -50,7 +50,7 @@ public class LoginTest extends ActivityInstrumentationTestCase2<LoginActivity> {
 				solo.assertCurrentActivity(
 						"User entered login details and clicked login!",
 						AppStatus.class);
-				assertEquals("AppDetailsActivity", solo.getCurrentActivity()
+				assertEquals("CheckinNativeActivity", solo.getCurrentActivity()
 						.getClass().getSimpleName());
 			} else {
 				solo.assertCurrentActivity("User enterd wrong Id password!",
